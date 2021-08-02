@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+      <link rel="stylesheet" type="text/css" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
+
+    <title>Table Data</title>
+  </head>
+  <style type="text/css">
+    
+    body
+    {
+      margin: 5px;
+      padding: 5px;
+    }
+    #datatable 
+    {
+      font-family: Arial, Helvetica, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+    }
+    #datatable td, #datatable th 
+    {
+      border: 1px solid #ddd;
+      padding: 8px;
+    }
+
+#datatable tr:nth-child(even)
+{
+  background-color: #f2f2f2;
+}
+#datatable tr:hover 
+{
+  background-color: #ddd;
+}
+#datatable th 
+{
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: center;
+  background-color: grey;
+  color: white;
+}
+.btn
+{
+  justify-content: flex-end;
+}
+  </style>
+  <body id="home">
+<!--Navigation bar-->
+    <nav class="nav navbar bg-primary justify-content-center">
+      <h1>DataTable</h1>
+    </nav>
+
+<!--Search option-->
+    <div id="example_filter" class="dataTable_filter">
+      <div class="row">
+        <div class="col-sm-6">
+            <h5 style="margin: 5px; padding: 5px;">Show
+             <input style="width: 40px;" type="number" name="number">Entities
+            </h5>
+        </div>
+          <div class="col-sm-6">
+            <h5 style="margin: 5px; padding: 5px; text-align: right;">
+              Search:
+              <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
+            </h5>
+          </div>
+      </div>
+  </div><br>
+
+<!--creating table-->
+  <table id="datatable" class="table table-border">
+  <thead>
+    <tr>
+      <th scope="col">Serial No</th>
+      <th scope="col">Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Phone</th>
+      <th scope="col">Country</th>
+      <th scope="col">Address</th>
+      <th scope="col">Website</th>
+      <th scope="col">Image</th>
+    </tr>
+  </thead>
+  <tbody id=ty>
+    <tr>
+      <th scope="row">1</th>
+      <td>Mark</td>
+      <td>Otto</td>
+      <td>@mdo</td>
+    </tr>
+    <tr>
+      <th scope="row">2</th>
+      <td>Jacob</td>
+      <td>Thornton</td>
+      <td>@fat</td>
+    </tr>
+    <tr>
+      <th scope="row">3</th>
+      <td>Larry</td>
+      <td>the Bird</td>
+      <td>@twitter</td>
+    </tr>
+     <tr>
+      <th scope="row">4</th>
+      <td>Larry</td>
+      <td>the Bird</td>
+      <td>@twitter</td>
+    </tr>
+     <tr>
+      <th scope="row">5</th>
+      <td>Larry</td>
+      <td>the Bird</td>
+      <td>@twitter</td>
+    </tr>
+  </tbody>
+</table>
+
+<!--Pagination code-->
+    <ul class = "pagination justify-content-end">
+        <li class = "page-item-active"> <a class="page-link" href="#home"> 1 </a> </li>
+        <li class = "page-item"> <a class="page-link" href="Health/task1_database2.html"> 2 </a> </li>
+    </ul>
+
+<input class="btn btn-success" type="button" id="btnExport" value="Export" onclick="Export()" />
+    <script src="table2excel.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        function Export() {
+            $("#tblCustomers").table2excel({
+                filename: "Table.xls"
+            });
+        }
+    </script>
+
+<!--Script for fetching data from the json-->
+      <script type="text/javascript">
+            //   var elem = document.getElementById('ty');
+            //     const getValue = async () =>
+            //     {
+            //     var datatable = await fetch("https://movie-database-imdb-alternative.p.rapidapi.com").then( response=>
+            //     response.json()
+            //     ).then(resp => 
+            //     {
+            //     var ty = '';
+            //     resp.data.forEach((value,key)=>
+            //     {
+            //     var trs = `<tr>
+            //       <td> ${(key+1)} </td>
+            //       <td>${value.name}</td>
+            //       <td>${value.email}</td>
+            //       <td>${value.phone}</td>
+            //       <td>${value.country}</td>
+            //       <td>${value.addresses[0].street}</td>
+            //       <td>${value.website}</td>
+            //       <td>${value.image}</td>
+            //     </tr>`;
+            //     //elem.appendChild(document.createElement(trs));
+            //     ty=ty+trs;
+            // //console.log(`${value.name}`)
+            //     })
+            //     elem.innerHTML = ty
+            //     }).catch( error =>{
+            //     console.log(error);
+            //     })
+            //     }
+            //     getValue();
+            var axios = require("axios").default;
+
+var options = {
+  method: 'GET',
+  url: 'https://movie-database-imdb-alternative.p.rapidapi.com/',
+  params: {i: 'tt4154796', r: 'json'},
+  headers: {
+    'x-rapidapi-key': '16da93a29dmsh22a9775ffb45520p1d145fjsnc18461128622',
+    'x-rapidapi-host': 'movie-database-imdb-alternative.p.rapidapi.com'
+  }
+};
+
+axios.request(options).then(function (response) {
+  console.log(response.data);
+}).catch(function (error) {
+  console.error(error);
+});
+
+      </script>
+
+<!--Script for search by name-->
+      <script>
+          function myFunction() 
+          {
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("myInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("datatable");
+            tr = table.getElementsByTagName("tr");
+            for (i = 1; i < tr.length; i++) 
+            {
+              td = tr[i].getElementsByTagName("td")[1];
+              if (td) 
+              {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) 
+                {
+                  tr[i].style.display = "";
+                } 
+                else 
+                {
+                  tr[i].style.display = "none";
+                }
+              }       
+            }
+          }
+
+      </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+  </body>
+</html>
